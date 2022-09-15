@@ -22,7 +22,8 @@ fetch("./texts.json")
 // checks the user typed character and displays accordingly
 const typeController = (e) => {
   const newLetter = e.key;
-
+  // stop scrollin down.
+  e.key == " " ? e.preventDefault() : "";
   // Handle backspace press
   if (newLetter == "Backspace") {
     userText = userText.slice(0, userText.length - 1);
@@ -117,6 +118,9 @@ const start = () => {
       document.addEventListener("keydown", typeController);
       countdownOverlay.style.display = "none";
       display.classList.remove("inactive");
+
+      // prevent start from zero(0) again.
+      countdownOverlay.innerHTML = ``;
 
       clearInterval(startCountdown);
       startTime = new Date().getTime();
